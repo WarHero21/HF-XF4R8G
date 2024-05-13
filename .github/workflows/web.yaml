@@ -38,6 +38,6 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: src/
-          platforms: linux/amd64
+          platforms: linux/arm64
           push: true
-          tags: ${{ env.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:latest
+          tags: ${{ env.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:arm64
