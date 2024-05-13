@@ -11,7 +11,7 @@ from ultralytics import YOLO
 model = YOLO("src/yolov8s.pt") # load the model
 
 app = Flask(__name__)
-DB_NAME = "test_db6"
+DB_NAME = "test"
 UPLOAD_FOLDER = 'pictures'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'webp', 'avif'}
 ADMIN_LIST = ['admin','Obi-Wan Kenobi']
@@ -156,4 +156,4 @@ def choose_user():
     return response
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host="0.0.0.0", debug=True)

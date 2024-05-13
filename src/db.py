@@ -9,7 +9,7 @@ class Db(object):
         self.DB_NAME = DB_NAME
 
     def download_all(self, username):
-        client = MongoClient()
+        client = MongoClient('mongodb', port=27017)
         db = client[self.DB_NAME]
         table = db[username]
 
@@ -22,7 +22,7 @@ class Db(object):
         return datas
     
     def download(self, username, filename):
-        client = MongoClient()
+        client = MongoClient('mongodb', port=27017)
         db = client[self.DB_NAME]
         table = db[username]
 
@@ -30,7 +30,7 @@ class Db(object):
         return Data.from_db(image)
     
     def upload(self, username, data):
-        client = MongoClient()
+        client = MongoClient('mongodb', port=27017)
         db = client[self.DB_NAME]
         table = db[username]
 
@@ -38,13 +38,13 @@ class Db(object):
         return data_id
     
     def get_users(self):
-        client = MongoClient()
+        client = MongoClient('mongodb', port=27017)
         db = client[self.DB_NAME]
         table = db["admin_users"]
         return [user['username'] for user in table.find({})]
     
     def save_user(self, username):
-        client = MongoClient()
+        client = MongoClient('mongodb', port=27017)
         db = client[self.DB_NAME]
         table = db["admin_users"]
 

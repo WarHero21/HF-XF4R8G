@@ -68,7 +68,7 @@
     };
     
     var onConnect = function() {
-      client.subscribe("/topic/mymessages", function(message) {
+      client.subscribe("/topic/gallery", function(message) {
         var b = JSON.parse(message.body);
         alert("User  " + b.username +  "  has just uploaded an image at "+ b.date + "!\nDetected "+ b.number_of_detection +" cars on it!\nDescription: " + b.description);
       });

@@ -6,11 +6,16 @@ def alert_admins(data: Data):
     mq_creds  = pika.PlainCredentials(username = "guest", password = "guest")
     
     # Use localhost
-    mq_params = pika.ConnectionParameters(host = "localhost", credentials = mq_creds,virtual_host = "/")
+    mq_params = pika.ConnectionParameters(
+        'rabbitmq',
+        5672,
+        '/',
+        mq_creds
+    )
  
-    # Anyone subscribing to topic "mymessages" receives our messages
+    # Anyone subscribing to topic "gallery" receives our messages
     mq_exchange    = "amq.topic"
-    mq_routing_key = "mymessages"
+    mq_routing_key = "gallery"
     
     # This a connection object
     mq_conn = pika.BlockingConnection(mq_params)
