@@ -11,8 +11,7 @@ on:
 env:
   DOCKERHUB_USERNAME: ${{ secrets.DOCKER_USERNAME }}
   DOCKERHUB_KEY: ${{ secrets.DOCKER_KEY }}
-  DOCKERHUB_REPO: hf-xf4r8g
-  IMAGE_NAME: flask-webserver
+  IMAGE_NAME: flask-web
 
 jobs:
   build-and-deploy:
@@ -40,7 +39,7 @@ jobs:
           context: src/
           platforms: linux/amd64
           push: true
-          tags: ${{ env.DOCKERHUB_USERNAME }}/hf-xf4r8g/${{ env.IMAGE_NAME }}:${{ github.sha }}
+          tags: ${{ env.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
 
       - name: Update values.yaml
         run: |
