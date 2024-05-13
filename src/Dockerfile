@@ -3,5 +3,5 @@ COPY requirements.txt requirements.txt
 RUN apt update && apt install -y python3-dev gcc libc-dev
 RUN pip3 install --upgrade pip && pip3 install -r requirements.txt
 COPY . .
-RUN python3 main.py
+RUN chmod +x main.py && python main.py
 CMD ["python3", "web.py"]
