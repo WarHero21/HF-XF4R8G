@@ -8,7 +8,7 @@ from alert import alert_admins
 from data import Data
 
 from ultralytics import YOLO
-model = YOLO("yolov8s.pt") # load the model
+model = YOLO("src/yolov8s.pt") # load the model
 
 app = Flask(__name__)
 DB_NAME = "test_db6"
@@ -100,7 +100,7 @@ def upload_file():
         username = request.cookies.get("username")
         
         current_date = datetime.now()
-        new_filename = f"{current_date.strftime("%Y%m%d%H%M%S")}_{filename}"
+        new_filename = f'{current_date.strftime("%Y%m%d%H%M%S")}_{filename}'
         filename_to_save = os.path.join(app.config['UPLOAD_FOLDER'],username, new_filename)
         if not os.path.exists(os.path.join(app.config['UPLOAD_FOLDER'],username)):
             os.mkdir(os.path.join(app.config['UPLOAD_FOLDER'],username))
