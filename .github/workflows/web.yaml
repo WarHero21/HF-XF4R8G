@@ -12,7 +12,7 @@ env:
   DOCKERHUB_USERNAME: ${{ secrets.DOCKER_USERNAME }}
   DOCKERHUB_KEY: ${{ secrets.DOCKER_KEY }}
   DOCKERHUB_REPO: hf-xf4r8g
-  IMAGE_NAME: web
+  IMAGE_NAME: flask-webserver
 
 jobs:
   build-and-deploy:
@@ -37,8 +37,8 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v5
         with:
-          context: src/${{ env.IMAGE_NAME }}
-          platforms: linux/arm64
+          context: src/
+          platforms: linux/amd64
           push: true
           tags: ${{ env.DOCKERHUB_USERNAME }}/hf-xf4r8g/${{ env.IMAGE_NAME }}:${{ github.sha }}
 

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Car/Cat Gallery</title>
+  <title>Online as: {{ username }}</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
@@ -30,14 +30,17 @@
   </div>
   <h1>Image Gallery</h1>
   <div class="row mt-4">
-    {% for image in images %}
+    {% for data in datas %}
     <div class="col-sm-4">
-        <img src="{{ url_for('detected_file', filename=image)}}" class="img img-thumbnail" alt="{{ image }}">
+        <img src="{{ url_for('uploaded_file', filename=data['filename'])}}" class="img img-thumbnail" alt="{{ data['description'] }}">
+        <div class="card-body">
+          <h5 class="card-text">Number of cars detected: {{ data['number_of_detection']}}</h5>
+          <p class="card-title">{{ data['description'] }}</p>
+        </div>
     </div>
     {% endfor %}
   </div>
 
 </div>
-
 </body>
 </html>
