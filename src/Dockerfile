@@ -1,6 +1,5 @@
-FROM python:3.8-slim-buster
+FROM python:3.11-slim
 COPY . .
-RUN apt update && apt install -y python3-dev gcc libc-dev ffmpeg libsm6 libxext6
-RUN pip3 install --upgrade pip && pip3 install -r requirements.txt
-RUN python3 install.py 
-CMD ["python3", "web.py"]
+RUN apt-get update && apt-get install -y --no-install-recommends libgl1 libglib2.0-0 && apt-get clean
+RUN pip install -r requirements.txt
+CMD ["python", "web.py"]
