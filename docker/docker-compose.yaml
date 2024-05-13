@@ -42,6 +42,10 @@ services:
       - rabbitmq
       - mongodb
       - loadbalancer
+    environment:
+      - MONGODB_CONTAINER_NAME: mongodb
+      - RABBITMQ_CONTAINER_NAME: rabbitmq
+      - DB_NAME: test2
     deploy:
       replicas: 3
       endpoint_mode: vip

@@ -8,12 +8,18 @@ from alert import alert_admins
 from data import Data
 
 from ultralytics import YOLO
-model = YOLO("src/yolov8s.pt") # load the model
+model = YOLO("yolov8s.pt") # load the model
+
+
+# GLOBAL VARIABLES
+MONGODB_CONTAINER_NAME = os.environ.get('MONGODB_CONTAINER_NAME')
+RABBITMQ_CONTAINER_NAME = os.environ.get('RABBITMQ_CONTAINER_NAME')
+DB_NAME = os.environ.get('DB_NAME')
+
 
 app = Flask(__name__)
-DB_NAME = "test"
 UPLOAD_FOLDER = 'pictures'
-ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'webp', 'avif'}
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'webp'}
 ADMIN_LIST = ['admin','Obi-Wan Kenobi']
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024

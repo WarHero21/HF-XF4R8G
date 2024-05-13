@@ -1,13 +1,13 @@
 import pika
 from data import Data
 
-def alert_admins(data: Data):
+def alert_admins(data: Data, RABBITMQ_CONTAINER_NAME):
     # Use plain credentials for authentication
     mq_creds  = pika.PlainCredentials(username = "guest", password = "guest")
     
     # Use localhost
     mq_params = pika.ConnectionParameters(
-        'rabbitmq',
+        RABBITMQ_CONTAINER_NAME,
         5672,
         '/',
         mq_creds
