@@ -1,0 +1,38 @@
+networks:
+  gallery_network:
+    driver: bridge
+
+services:
+  rabbitmq:
+    image: josarichard/rabbitmq:web_stomp
+    container_name: rabbitmq
+    ports:
+      - 5672:5672
+      - 15672:15672
+      - 15674:15674
+      - 15670:15670
+    networks:
+      - gallery_network
+
+  mongodb:
+    image: mongodb/mongodb-community-server:latest
+    container_name: mongodb
+    ports:
+      - 27017:27017
+    networks:
+      - gallery_network
+
+  web:
+    image: josarichard/flask-web:latest
+    ports:
+      - 5000:5000
+    depends_on:
+      - rabbitmq
+      - mongodb
+    deploy:
+      mode: replicated
+      replicas: 2
+      endpoint_mode: vip
+    networks:
+      - gallery_network
+    
