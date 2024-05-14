@@ -24,7 +24,7 @@ ADMIN_LIST = ['admin','Obi-Wan Kenobi']
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
 
-db = Db(DB_NAME)
+db = Db(DB_NAME, MONGODB_CONTAINER_NAME)
 
 if not os.path.exists(f"{UPLOAD_FOLDER}"):
     os.mkdir(f"{UPLOAD_FOLDER}")
@@ -141,7 +141,7 @@ def upload_file():
 
         ## Alert the admins
 
-        alert_admins(data)
+        alert_admins(data, RABBITMQ_CONTAINER_NAME)
 
         ## Response
 
