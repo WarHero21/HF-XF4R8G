@@ -25,6 +25,7 @@ class Data(object):
         self.filename = filename
 
     
+    # Convert itself to a form that is uploadable by pymongo.
     def to_db(self):
         return {
             'image': self.image,
@@ -35,6 +36,7 @@ class Data(object):
             'filename': self.filename,
         }
     
+    # Convert itself to a JSON string.
     def to_cookie(self):
         value = json.dumps({
             'description': self.description,
@@ -46,6 +48,7 @@ class Data(object):
 
         return value
 
+    # Create a Data from a pymongo response.
     @staticmethod
     def from_db(data):
         id = data["_id"]
@@ -57,6 +60,7 @@ class Data(object):
         filename = data["filename"]
         return Data(id=id, image=image, description=description, number_of_detection=number_of_detection, username=username, date=date, filename=filename)
     
+    # Create a Data from a cookie.
     @staticmethod
     def from_cookie(cookie):
         value = json.loads(cookie)

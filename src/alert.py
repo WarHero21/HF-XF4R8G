@@ -1,6 +1,7 @@
 import pika
 from data import Data
 
+# Sends the image datas to administrators via rabbitmq.
 def alert_admins(data: Data, RABBITMQ_CONTAINER_NAME):
     # Use plain credentials for authentication
     mq_creds  = pika.PlainCredentials(username = "guest", password = "guest")
